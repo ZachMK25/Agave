@@ -6,43 +6,23 @@ import os.path
 import sys
 
 def scrape_description(video_identifier):
-
-    # We can cut the whole cache thing once we refine the extraction, 
-    # I just done wanna get blocked by YouTube when I am making so many requests
-
-    FORCE_RENEW_CACHE = True
-    # check if the cache file has been used before and has something in it.
-    # using this for now to not blacklist us from youtube requests. need to figure out something more permanent in the future
-    cache_exists = os.path.isfile("cache.txt") and os.stat("cache.txt").st_size != 0
     
         
     youtube_url = "https://youtube.com/watch?v="+video_identifier
     
     # maybe some url validation here
     
-    
-    # need to avoid rate limiting from youtube
-    if not cache_exists or FORCE_RENEW_CACHE:
-        # https://stackoverflow.com/questions/72354649/how-to-scrape-youtube-video-description-with-beautiful-soup
 
-        soup = BeautifulSoup(requests.get(youtube_url).content, features="html.parser")
 
-        html_pattern = re.compile('(?<=shortDescription":").*(?=","isCrawlable)')
+    # https://stackoverflow.com/questions/72354649/how-to-scrape-youtube-video-description-with-beautiful-soup
 
-        description = html_pattern.findall(str(soup))[0].replace('\\n','\n')
+    soup = BeautifulSoup(requests.get(youtube_url).content, features="html.parser")
 
-        print(description)
+    html_pattern = re.compile('(?<=shortDescription":").*(?=","isCrawlable)')
 
-        cache_file = open("cache.txt", "w")
+    description = html_pattern.findall(str(soup))[0].replace('\\n','\n')
 
-        cache_file.write(description)
-        
-        cache_file.close()
-        
-    else: 
-        cache_file = open("cache.txt", "r")
-        description = cache_file.read()
-        cache_file.close()
+    print(description)
 
     # finding links within description
 
