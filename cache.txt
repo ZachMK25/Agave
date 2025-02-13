@@ -1,10 +1,36 @@
-Thank you to Bombas for sponsoring this video! One Purchased = One Donated so head to https://bombas.com/chadchad and use code chadchad at checkout for 20% off your first purchase! 
+Pre-order the NexiGo Aurora Pro MKII at: https://lmg.gg/AuroraProMKII
 
+Check out Private Internet Access VPN: https://www.piavpn.com/LTT
 
+With Tiktok, PH, and many other services being blocked and restricted in various parts of the world, the question of how to use and setup a VPN is more important than every, and today, we show you what might be the easiest way to run your own private VPN server - or how to use one of the public ones.
 
+Watch this video on Floatplane!: https://www.floatplane.com/post/cr7tsRA305
 
+Instructions \u0026 Links: https://github.com/jakelmg/easy-tailscale-server 
+Configuration Tool: https://jakelmg.github.io/tailscale-flatcar-config-tool
 
+Check out Tailscale: https://lmg.gg/tailscale
+Check out Vultr: https://lmg.gg/vultr 
 
-thank you for watching :)
-my ig: https://www.instagram.com/thechadx2/  
-my twitter: https://x.com/thechadx2
+Check out Private Internet Access VPN: https://www.piavpn.com/LTT
+
+Discuss on the forum: https://linustechtips.com/topic/1600864-i-made-my-own-vpn/
+
+► GET OUR MERCH: https://lttstore.com
+► GET EXCLUSIVE CONTENT ON FLOATPLANE: https://lmg.gg/lttfloatplane
+► GET A VPN: http://www.piavpn.com/linus
+► SPONSORS, AFFILIATES, AND PARTNERS: https://lmg.gg/partners
+
+Purchases made through some store links may provide some compensation to Linus Media Group.
+
+CHAPTERS
+---------------------------------------------------
+0:00 Intro
+1:01 Why do you need a VPN?
+1:32 Level 1: Public VPN
+1:58 Level 2: DIY VPN
+2:14 DISCLAIMER
+2:24 Level 2 Tutorial
+7:05 Does it work?
+7:50 Caveats
+9:17 Using a VPN for remote access
