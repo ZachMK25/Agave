@@ -13,7 +13,6 @@ def scrape_description(video_identifier):
     # maybe some url validation here
     
 
-
     # https://stackoverflow.com/questions/72354649/how-to-scrape-youtube-video-description-with-beautiful-soup
 
     soup = BeautifulSoup(requests.get(youtube_url).content, features="html.parser")
