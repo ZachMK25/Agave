@@ -5,8 +5,7 @@ import tldextract
 import os.path
 import sys
 
-def scrape_description(video_identifier):
-    
+def scrape_description(video_identifier, printing=False):
         
     youtube_url = "https://youtube.com/watch?v="+video_identifier
     
@@ -20,8 +19,6 @@ def scrape_description(video_identifier):
     html_pattern = re.compile('(?<=shortDescription":").*(?=","isCrawlable)')
 
     description = html_pattern.findall(str(soup))[0].replace('\\n','\n')
-
-    print(description)
 
     # finding links within description
 
@@ -39,14 +36,17 @@ def scrape_description(video_identifier):
     affiliate_link_pattern = re.compile('https?:\/\/\S+\?(?:ref|affiliate_id|promo)=\S+')
     affiliate_links = affiliate_link_pattern.findall(description)
 
-    print("all links found in description:\n",links,"\n")
-    print("found the following shortened links\n",shortened_links,"\n")
-    print("found the following affiliate links\n",affiliate_links,"\n")
+    if printing:
+        print("*** URL", youtube_url)
+        print("extracted description", description)
+        print("all links found in description:\n",links,"\n")
+        print("found the following shortened links\n",shortened_links,"\n")
+        print("found the following affiliate links\n",affiliate_links,"\n")
 
     # throw out links to socials, add more as needed
     # eventually want a more thorough way of validating whether a link would be to a sponsor
 
-    common_socials = ["x", "instagram", "bsky", "youtube", "facebook"]
+    common_socials = ["x", "instagram", "bsky", "youtube", "facebook", "discord", "tiktok"]
 
     sponsor_links = []
 
@@ -55,8 +55,9 @@ def scrape_description(video_identifier):
             
         if not domain in common_socials:
             sponsor_links.append(link)
-            
-    print("sponsor links:\n",sponsor_links,"\n\n")
+
+    if printing:       
+        print("sponsor links:\n",sponsor_links,"\n\n")
     
     return {
         "sponsor_links":sponsor_links,
