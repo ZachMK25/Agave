@@ -3,6 +3,13 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# cache files
+cache.txt
+cache-old.txt
+
+#macos
+.DS_Store
+
 # C extensions
 *.so
 
