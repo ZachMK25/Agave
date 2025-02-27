@@ -11,14 +11,21 @@ def scrape_description(video_identifier, printing=False):
     
     # maybe some url validation here
     
-
     # https://stackoverflow.com/questions/72354649/how-to-scrape-youtube-video-description-with-beautiful-soup
 
     soup = BeautifulSoup(requests.get(youtube_url).content, features="html.parser")
 
     html_pattern = re.compile('(?<=shortDescription":").*(?=","isCrawlable)')
+    
+    match = html_pattern.findall(str(soup))
+    
+    if match:
+        print(True)
+        print("MATCHED")
+        description = match[0]
+    else:
+        print("NO MATCH\n")
 
-    description = html_pattern.findall(str(soup))[0].replace('\\n','\n')
 
     # finding links within description
 
@@ -43,14 +50,21 @@ def scrape_description(video_identifier, printing=False):
     # throw out links to socials, add more as needed
     # eventually want a more thorough way of validating whether a link would be to a sponsor
 
-    common_socials = ["x", "instagram", "bsky", "youtube", "facebook", "discord", "tiktok"]
+    # added a txt to store all the ignored domains, 
+    # may want to migrate to a DB or another method for doing this in the future
+    
+    with open("./excludedDomains.txt","r") as file:
+        excluded_domains = set(line.strip() for line in file)
+
+    if not excluded_domains:
+        return ("missing excludedDomains.txt")
 
     sponsor_links = []
 
     for link in links:
         domain = tldextract.extract(link).domain
             
-        if not domain in common_socials:
+        if not domain in excluded_domains:
             sponsor_links.append(link)
 
     if printing:       

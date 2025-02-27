@@ -8,13 +8,12 @@ from bs4 import BeautifulSoup
 
 config = dotenv_values(".env")
     
-
 app = Flask(__name__)
 
 @app.route('/<video_id>', methods=['GET'])
 def get_item(video_id):
     print(video_id)
-    out = scrape_description(video_id)
+    out = scrape_description(video_id, printing=True)
     if out:
         return jsonify(out)
     else:
