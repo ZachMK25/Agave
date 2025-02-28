@@ -13,7 +13,7 @@ app = Flask(__name__)
 @app.route('/<video_id>', methods=['GET'])
 def get_item(video_id):
     print(video_id)
-    out = scrape_description(video_id, printing=True)
+    out = scrape_description(video_id, printing=False)
     if out:
         return jsonify(out)
     else:

@@ -13,11 +13,13 @@ def scrape_description(video_identifier, printing=False):
     
     # https://stackoverflow.com/questions/72354649/how-to-scrape-youtube-video-description-with-beautiful-soup
 
-    soup = BeautifulSoup(requests.get(youtube_url).content, features="html.parser")
+    soup = BeautifulSoup(requests.get(youtube_url, timeout=(3.05, 27)).content, features="html.parser")
 
     html_pattern = re.compile('(?<=shortDescription":").*(?=","isCrawlable)')
     
     match = html_pattern.findall(str(soup))
+    
+    description=None
     
     if match:
         print(True)
@@ -26,7 +28,7 @@ def scrape_description(video_identifier, printing=False):
     else:
         print("NO MATCH\n")
 
-
+    print("description before",description)
     # finding links within description
 
     link_pattern = re.compile('https://[a-zA-Z0-9\-\?\/\.\?]*')
@@ -40,6 +42,7 @@ def scrape_description(video_identifier, printing=False):
     affiliate_link_pattern = re.compile('https?:\/\/\S+\?(?:ref|affiliate_id|promo)=\S+')
     affiliate_links = affiliate_link_pattern.findall(description)
 
+    print("description now",description)
     if printing:
         print("*** URL", youtube_url)
         print("extracted description", description)
