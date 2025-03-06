@@ -49,6 +49,9 @@ def scrape_description(video_identifier):
     link_pattern = re.compile('https://[a-zA-Z0-9\-\?\/\.\?]*')
 
     links = link_pattern.findall(description)
+
+    with open("temp-links-db.txt", "w") as file:
+        file.write("hi")
     
     shortened_link_pattern = re.compile('https?:\/\/(?:bit\.ly|goo\.gl|ow\.ly|tinyurl\.com)\/\S+')
     shortened_links = shortened_link_pattern.findall(description)
