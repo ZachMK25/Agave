@@ -4,6 +4,7 @@ import re
 import tldextract
 import os.path
 import sys
+import json
 
 def scrape_description(video_identifier, printing=False):
         
@@ -26,8 +27,16 @@ def scrape_description(video_identifier, printing=False):
 
     links = link_pattern.findall(description)
 
-    with open("temp-links-db.txt", "w") as file:
-        file.write("hi")
+    with open("temp-links-db.json", "r+") as file: 
+        contents = json.loads(file.read())
+        # # if(len(file.read()) == 0):
+        # if(len(contents) == 0):
+        #     contents = {"all-links": []}
+        # else:
+            
+    contents["all-links"] += links
+    with open("temp-links-db.json", "w") as file: 
+        json.dump(contents, file)
     
     shortened_link_pattern = re.compile('https?:\/\/(?:bit\.ly|goo\.gl|ow\.ly|tinyurl\.com)\/\S+')
     shortened_links = shortened_link_pattern.findall(description)
